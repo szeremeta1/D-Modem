@@ -72,9 +72,10 @@ Finally, dial the number of the target system.  Below shows a connection to the 
 
 If V.34 connections fail part-way through the handshake with `vpcm: Link Error`
 in the log, the cause is likely a carrier-loss watchdog in `dsplibs.o` that ends
-the call after one unbroken second below a signal threshold. On a packet path
-there is no dBm-calibrated receive level for the datapump to select that
-threshold with, so its lookup falls through to an out-of-range clamp. Build with
+the call after one unbroken second below a signal threshold. The threshold is the
+datapump's default on every installation; what a packet path changes is the length
+of the handshake's legal quiet intervals, which here exceed the one second the
+watchdog allows. Build with
 `slmodemd/apply_watchdog_hook.sh` and set `SLM_V34_LOWSIG=-1000000` to disable
 the criterion. On one production installation this moved call completion from
 19/30 to 27/30 (Fisher exact, two-sided, p = 0.030) with every completed call
