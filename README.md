@@ -69,3 +69,12 @@ Finally, dial the number of the target system.  Below shows a connection to the 
 
 
 Copyright 2021 Aon plc
+
+### Experimental V.90 digital-answer gates
+
+An optional [V.90 negotiation experiment](slmodemd/v90-gates/README.md) includes
+checked source interposers and offline tests for digital V.8 declarations,
+constructor selection, INFO0 initialization, fallback, and cleanup. It builds
+into a separate directory and defaults off. Native 8 kHz PCM transport remains
+unfinished; no successful digital call, rate increase, or reliability gain is
+claimed.
