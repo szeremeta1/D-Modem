@@ -36,6 +36,7 @@ def main():
         out = root / "compiled output"
         invoke(out, ok=True)
         manifest = json.loads((out / "rx-conditioning-build.json").read_text())
+        assert manifest["conditioning_api"] == "processed-pilot-or-causal-socket-index-v3"
         assert manifest["dsp_unchanged"] is True
         assert manifest["dsp_sha256"] == hashlib.sha256((src / "dsplibs.o").read_bytes()).hexdigest()
         assert manifest["header_sha256"] == hashlib.sha256((src / "dmodem_rx_condition.h").read_bytes()).hexdigest()
@@ -43,6 +44,17 @@ def main():
         elf = subprocess.check_output(["readelf", "-h", str(out / "slmodemd")], text=True)
         assert "ELF32" in elf and "Intel 80386" in elf, elf
         print("PASS stock i386 build, public Makefile, exact header/blob, source preservation")
+
+        # Run the same component checks under the target's real 32-bit ABI.
+        # This program only exercises arrays and pipes, never modem or SIP code.
+        component = root / "rxcond-component"
+        subprocess.run(["cc", "-m32", "-O2", "-Wall", "-Wextra", "-Werror",
+                        str(src / "tests/rx-conditioning-test.c"), "-lm", "-o", str(component)], check=True)
+        checked = subprocess.run([str(component)], capture_output=True, text=True, check=True)
+        assert "raw socket startup/padding" in checked.stdout, checked.stdout
+        assert "MODEL FAILURE" in checked.stderr, "underflow cases were not exercised"
+        assert hashes(src) == pristine
+        print("PASS i386 component checks: both clocks, skips, padding, byte stream and model failure")
 
         installed = hashes(out)
         invoke(out)
@@ -80,14 +92,24 @@ def main():
         assert race.is_dir() and not list(race.iterdir())
         print("PASS concurrent output preserved")
 
-        # Detect incompatible host source before copying or compiling anything.
+        # Missing or duplicate boundary anchors must fail before a build starts.
         main_source = src / "modem_main.c"
-        main_source.write_text(main_source.read_text().replace("modem_process(m,inbuf,outbuf,count);", "/* incompatible source */"))
+        stock = main_source.read_text()
+        anchors = ("\t\t\tmodem_process(m,inbuf,outbuf,count);", "\t\t\tin = inbuf;",
+                   "\t\tret = write(dev->fd, outbuf, ret);", "\t\t\t\tmemset(outbuf, 0, m->update_delay*2);")
+        for n, anchor in enumerate(anchors):
+            for mode in ("missing", "duplicate"):
+                replacement = "/* incompatible source */" if mode == "missing" else anchor + "\n" + anchor
+                main_source.write_text(stock.replace(anchor, replacement))
+                pristine = hashes(src)
+                rejected = root / f"bad source {n} {mode}"
+                assert "Source anchor must occur once" in invoke(rejected).stderr
+                assert not rejected.exists()
+        # Never silently stack a second experiment on a conditioned host tree.
+        main_source.write_text((out / "modem_main.c").read_text())
         pristine = hashes(src)
-        rejected = root / "bad source output"
-        assert "Source anchor must occur once" in invoke(rejected).stderr
-        assert not rejected.exists()
-        print("PASS incompatible source refused before staging")
+        assert "Source anchor must occur once" in invoke(root / "double patched").stderr
+        print("PASS missing/duplicate source anchors and double installation refused before staging")
 
 
 if __name__ == "__main__":
