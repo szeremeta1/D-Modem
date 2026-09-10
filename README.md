@@ -68,4 +68,11 @@ Finally, dial the number of the target system.  Below shows a connection to the 
 - There is currently no support for receiving calls 
 
 
+## Optional socket I/O experiment
+
+The [socket stream I/O experiment](socket-io/README.md) provides a separate,
+default-disabled build for preserving sample bytes across fragmented reads and
+partial writes. Its offline tests do not establish physical-call reliability or
+improved negotiated rates.
+
 Copyright 2021 Aon plc

@@ -1,0 +1,95 @@
+{
+  "validation_date_utc": "2026-09-10",
+  "upstream_commit": "636959b37b592b87a47c6da2069149961cd70ccf",
+  "profile": "public-stock",
+  "platform": "Linux ELF32 i386 PIE",
+  "physical_calls_tested": 0,
+  "file_sha256": {
+    "build.py": "ac5895234ad5ec7435ffa253cb4674e051e4f21f6d7af065c02e1da8ce33f213",
+    "dmodem_socket_io.h": "51da456f113afb3ecaa7bccb5f7fec7e35763f28f2a5c0441b4996e8cca0c8f0",
+    "test_socket_io.c": "9f0423c24a76dc6785999afd587ff3e239a63a02cfdb8d9f14d3b3a2c9ada85b",
+    "test_socket_wait.c": "6cb866490e0a6e21c644fb360922437a8a411db7b180c60d66188e246fe43357",
+    "test_integration.py": "3448c05ecdcf57161114647968aef9d5e1fd97a4a4f12afffbf2938999640b2c",
+    "test_build.py": "9d63bfb1fd1bb3db22662c6837850c8ede0dc4b13f85d56e694f861fb17bf9ec"
+  },
+  "baseline_input_sha256": {
+    "modem_main.c": "8fe87bbaccdcc989e7eba4017015dac07420d478a569ec3bbc0e88c95ec2b688",
+    "modem_main.o": "889d6bf23cf5c92af2d52855ed1f6c5604fe6906f2a27f9578ea46deeb02e302",
+    "slmodemd": "59e2c8816b4784d1e9ac0c8a943d0a272b1a89c6ed865b7b12f148010c7c7381",
+    "modem_cmdline.o": "2762060326c3c847dbc9faa49fcb91b149d9d7a30c4f73b2f8f87683f9ebb325",
+    "modem.o": "80295908bf10f46b12d627eb0168d125c3a681cc48232ba73ca109960757f4aa",
+    "modem_datafile.o": "5c83e11f0d4c2890d9e2008ef2ee25b2e95f4da350eaf33d1992cf04b934410c",
+    "modem_at.o": "ffe687409be9604e382cec205d744036e734cf6cba9074e5843ab8376edc96bd",
+    "modem_timer.o": "3ac80171705866600c2040c3ef9a4d7106ad7aadca8232fecffd3bc92cf2b235",
+    "modem_pack.o": "bc779e6f8a85ac92eede1a16912b1bb923328c70336ae322900c4fc6bed5bab0",
+    "modem_ec.o": "3ad34aafa5b6c8db7b58d3b938a2a1b293d8e4671ec20290d4638b58c8724d1d",
+    "modem_comp.o": "e11ee77e3b707dda3b6f9d9fb798a11522f079406f4bc54842b6260f3f9bb0cc",
+    "modem_param.o": "000e8f4d6b43c5533565aad1dae9ce98c45ad224afd6a2d92ecbf583996e65d0",
+    "modem_debug.o": "be039c37fe0ad1231702ffc3ada4e98a768c7fcb4ce3a0eb5d5c8d6683d8526b",
+    "homolog_data.o": "b76355e4d9172b2b98659be455b587f2e26a47f1bd04e6abf866008b63cc53df",
+    "dp_sinus.o": "0b8d08f8348a99339662cd5f9ddd2a55b1cf46ecb9e0359416a1c505594af081",
+    "dp_dummy.o": "dafed7173ed8f7a3634da42a07c8e02d497336c3929038d7fdbc16f9db6b1ff7",
+    "dsplibs.o": "1f3e56d0dfae1a6aaf4eb6fcc4875a4524905e010d5758114cde288b3cf0b379",
+    "sysdep_common.o": "9f5f52b0122b177aa6d022b9d10525950f414c4537d183519c0acf850e41e69e",
+    "modem_param.h": "a03f456be0ba24cd471e8c787dde1581a16e25c01e83055782c555e61ff4565b",
+    "modem_timer.h": "dcc2c46f643743ea6d5f2afc5a283d077a00cb02fb8cadacc3b85afd06e2ae97",
+    "modem_defs.h": "dc7e0a41f1f7d49680b61092237012cbb9d961f21b513aa9d2781cf1dfed8fd5",
+    "modem_debug.h": "93c179f40389ee9aa7b00cdc71a57145acb40ee2e68c358b02ed32b358fcd83f",
+    "modem_dp.h": "9789ef3480f4792db970139250802b839c1bdaa6e1177c81e701424f4c44711f",
+    "modem.h": "559106b466134508bebd66de65f7960ba9a864569758ad8b9d69ac5b7620326a",
+    "modem_homolog.h": "140057f5f6647ca5fe0bee4505243039feadfb7d1eabb4de19e9cd0d6dea1415"
+  },
+  "candidate": {
+    "header_sha256": "51da456f113afb3ecaa7bccb5f7fec7e35763f28f2a5c0441b4996e8cca0c8f0",
+    "source_sha256": "30025a4f68dbdd807ec09cad439a7f4d5274d4bc631f0603ecbd95e3072edda8",
+    "host_object_sha256": "9f3634a684124f197d6acf85546e63922a73e2903b53dd0fd83c2e0e302f2bb8",
+    "binary_sha256": "cfe03518ef5891bc8642a7ef0a8ca169b7c3bb63294e672da54da7d51d591c20",
+    "dsp_unchanged": true,
+    "make_invoked": false,
+    "pristine_host_code_matches": true,
+    "baseline_relink_matches": true
+  },
+  "checks": [
+    {
+      "check": "build",
+      "exit_code": 0,
+      "log_sha256": "bf7206d0aa018b2e61bdc69f944b20a450db14cee1236f01a4d81bdc625b5e13"
+    },
+    {
+      "check": "builder-refusals",
+      "exit_code": 0,
+      "log_sha256": "e9292044c184755c5fa41f3f5c670c52e77de50f90a2900e0b7c3d8a136a6df0"
+    },
+    {
+      "check": "integration",
+      "exit_code": 0,
+      "log_sha256": "4a59b17250fa2f835b22597927f4c41d7b945e7330ab8c9933d8957996d01882"
+    },
+    {
+      "check": "compile-component",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "check": "component",
+      "exit_code": 0,
+      "log_sha256": "fb7afd9e3f95dcb3606a38d264fd2358fe08f7d321f5d2322c8abb6224c569e7"
+    },
+    {
+      "check": "compile-cancellation",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "check": "cancellation",
+      "exit_code": 0,
+      "log_sha256": "d7d076d6f58e0cfaf5e16019d8431c315bd781db2bda79b081545e99167b105d"
+    }
+  ],
+  "scope": "socket bytes and delay bounds only; no DSP/conditioning/clock modification",
+  "notes": [
+    "Hashes identify this reviewed offline build, not arbitrary builds of the same source.",
+    "Full debug information retains build-path dependence; allocated code and relocations were separately checked.",
+    "No claim of improved negotiated rates, physical-call success or call-drop percentage."
+  ]
+}
