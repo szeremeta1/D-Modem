@@ -109,6 +109,13 @@ with the original criterion and 27/30 with it disabled (two-sided Fisher exact
 p = 0.030). Every completed call reported 33,600 bit/s **caller receive rate** in
 both arms. That measures fewer failed handshakes, not faster negotiation, both
 directional rates, a 100-call reliability result, or behavior on other hardware.
+
+The historical A/B used additional host-side INFO0 recovery and buffering
+changes in both arms. The build above isolates this watchdog hook on the audited
+upstream tree; it does not recreate the complete historical installation. The
+deposited paper artifacts do not include all of that installation's predecessor
+host patches or service configuration.
+
 The [original methods and data](https://dialup.litenet.tel/research/v34-modem/)
 include later corrections. RX noise and delayed self-echo proposed in issue #13
 are separate experiments; this watchdog hook does not implement them.
