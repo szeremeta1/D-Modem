@@ -69,3 +69,12 @@ Finally, dial the number of the target system.  Below shows a connection to the 
 
 
 Copyright 2021 Aon plc
+
+### Experimental near-end V.34 echo output bypass
+
+The optional [near-EC output experiment](slmodemd/near-ec/README.md) suppresses
+only two verified near-context estimates while retaining the original filter
+history and far estimates. Its builder preserves prebuilt host objects and
+checks the exact public DSP ABI and linked callers. Offline fixtures cover
+signal effect, adaptation and both executable layouts; no physical-call speed
+or reliability improvement is claimed.
