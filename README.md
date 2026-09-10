@@ -68,4 +68,12 @@ Finally, dial the number of the target system.  Below shows a connection to the 
 - There is currently no support for receiving calls 
 
 
+## Experimental receive conditioning
+
+A separate, opt-in build can add calibrated noise and delayed local transmit
+echo to signed-linear DSP receive samples. It leaves the vendor object and the
+input source tree unchanged. See [the experiment controls, build instructions,
+and limits](slmodemd/RX_CONDITIONING.md). This is experimental infrastructure;
+no faster negotiated rate or improved call reliability is established here.
+
 Copyright 2021 Aon plc
