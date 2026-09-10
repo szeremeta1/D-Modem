@@ -38,7 +38,7 @@ independent review and a new explicit profile; do not simply replace the pins
 after a refusal.
 
 On Linux with Python 3, GCC's 32-bit development support and GNU binutils, point
-the builder at a reviewed `slmodem-2.9.11-20110321/modem` build directory containing
+the builder at a reviewed `slmodemd/` build directory containing
 the source, headers, objects and executable. The output must be a new directory:
 
 ```sh
