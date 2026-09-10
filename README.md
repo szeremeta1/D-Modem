@@ -70,16 +70,53 @@ Finally, dial the number of the target system.  Below shows a connection to the 
 
 ## V.34 reliability
 
-If V.34 connections fail part-way through the handshake with `vpcm: Link Error`
-in the log, the cause is likely a carrier-loss watchdog in `dsplibs.o` that ends
-the call after one unbroken second below a signal threshold. The threshold is the
-datapump's default on every installation; what a packet path changes is the length
-of the handshake's legal quiet intervals, which here exceed the one second the
-watchdog allows. Build with
-`slmodemd/apply_watchdog_hook.sh` and set `SLM_V34_LOWSIG=-1000000` to disable
-the criterion. On one production installation this moved call completion from
-19/30 to 27/30 (Fisher exact, two-sided, p = 0.030) with every completed call
-training at 33,600 bit/s in both arms — it removes a spurious hang-up rather than
-raising the rate. See https://dialup.litenet.tel/research/v34-modem/.
+An optional handshake watchdog workaround is available for the exact i386
+`dsplibs.o` shipped in this tree. It does not establish why a particular modem
+path needs the workaround. The vendor threshold is its normal default, not a
+packet-path calibration error. Other possible causes of `vpcm: Link Error`
+remain; see [the investigation and subsequent corrections](https://github.com/strozfriedberg/D-Modem/issues/13).
+
+On Linux, with the normal 32-bit build dependencies and GNU binutils installed:
+
+```sh
+./slmodemd/apply_watchdog_hook.sh ./slmodemd
+# Use the separately built executable in place of ./slmodemd/slmodemd:
+SLM_V34_LOWSIG=-1000000 ./slmodemd-watchdog/slmodemd -d2 -e ./d-modem /dev/slamr0
+```
+
+The installer checks the vendor object's SHA-256, builds in a temporary directory,
+and verifies that the linked `vpcm_run` calls the wrapper and that the wrapper
+reaches the original. It then publishes the separate `slmodemd-watchdog` directory;
+it never edits the input tree. An optional second argument selects another output
+directory. Repeating the command verifies an existing build; changed inputs or
+output require a new directory. The hook adds no vendor object to the repository
+and changes no vendor instructions. Other blob versions need a fresh ABI audit.
+
+Without either variable below, the wrapper returns the original function's result
+without reading or writing private DSP state or calling diagnostic getters:
+
+| Variable | Effect |
+| --- | --- |
+| `SLM_V34_LOWSIG` | Override the handshake's signed 32-bit low-signal threshold before each fragment. `-1000000` disables this criterion because the metric is signed 16-bit. Unset or `1` preserves the original threshold. Invalid integers are rejected. |
+| `SLM_V34_METRIC=N` | Log the observed signal metric, threshold, counter, and status every N fragments. Unset or zero disables logging. Fragment indices span the process lifetime. |
+
+The independent acquisition/session timeouts remain. Experimental fatal-status,
+rate-renegotiation, and retrain overrides are deliberately absent from this hook.
+To return to vendor behavior, unset these variables or use the original binary.
+
+Historical interleaved testing on one installation recorded 19/30 completed calls
+with the original criterion and 27/30 with it disabled (two-sided Fisher exact
+p = 0.030). Every completed call reported 33,600 bit/s **caller receive rate** in
+both arms. That measures fewer failed handshakes, not faster negotiation, both
+directional rates, a 100-call reliability result, or behavior on other hardware.
+The [original methods and data](https://dialup.litenet.tel/research/v34-modem/)
+include later corrections. RX noise and delayed self-echo proposed in issue #13
+are separate experiments; this watchdog hook does not implement them.
+
+Run the isolated wrapper checks with `python3 slmodemd/tests/test_watchdog.py`.
+They verify argument/result passthrough, absence of default private-state access,
+strict integer parsing, and threshold reapplication on a reused object. On Linux, also run `python3 slmodemd/tests/test_watchdog_install.py` for isolated
+32-bit build, rerun, failure, and output-preservation checks. These are component
+checks, not modem-call acceptance tests.
 
 Copyright 2021 Aon plc
