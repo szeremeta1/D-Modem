@@ -428,6 +428,33 @@ static void modem_hup(struct modem *m, unsigned local)
 	case STATE_MODEM_IDLE:
 		return;
 	case STATE_DP_ESTAB:
+		/* The call is ending while it is still handshaking: a datapump was
+		 * created and never reached data mode. Say so, unconditionally.
+		 *
+		 * This is the most common way this stack fails a caller and, until
+		 * this line, the only completely silent one. Without a -d flag the
+		 * answering side prints nothing at all for it -- no `change dp`, no
+		 * error, no reason -- so from outside it is indistinguishable from a
+		 * caller who hung up: ATA, a few seconds of relayed audio, and the
+		 * call is over. The line, the port and the process are all healthy.
+		 *
+		 * It matters most on the answering side, because modem_answer()
+		 * discards the automode bit -- the hardcoded zero with the intended
+		 * value commented out beside it, further down this file -- so the
+		 * modem is locked to whatever AT+MS named and will not try another.
+		 * A caller whose modem cannot complete that one datapump fails this
+		 * way on EVERY attempt, for ever, and nothing anywhere says why. On
+		 * one production pool that cost a subscriber nine days of service.
+		 *
+		 * dp id is the datapump that was actually running -- 8 is V.8, which
+		 * every fast modulation is routed through first -- so `offered 34,
+		 * running 8` is a V.8 negotiation that never handed off, and
+		 * `offered 132, running 132` is a V.32bis train that failed. */
+		MODEM_INFO("%s: no carrier: still handshaking after %ld samples "
+			   "(offered dp %d, automode %s, running dp %d)\n",
+			   m->name, m->count, MODEM_DP(m),
+			   MODEM_AUTOMODE(m) ? "requested" : "off",
+			   m->dp ? m->dp->id : -1);
 		if(local && m->dp && m->dp->op->hangup )
 			m->dp->op->hangup(m->dp);
 		modem_set_state(m,STATE_DP_DISC);
