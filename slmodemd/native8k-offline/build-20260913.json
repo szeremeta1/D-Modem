@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "public_gate_commit": "4439727757a7d8be2a6176a7147fd14c5146cbcc",
+  "abi_inventory_sha256": "49974da2e5afaaf75de5da71dd231c347516af24b0598c3fe23a7d44ea50b6a9",
+  "tool_source_sha256": {
+    "build.py": "c80538b1bc47e4feae6c0f5610fd75219566444d2110822239041d8851029971",
+    "validate.py": "d89d6d2ef2c5b1f6b834522e2b4fb0a48238e6d03123eb663c54a77fceef9446",
+    "test_build.py": "780709cf168614d5ebe07359cd7c5c5511db1f0a1604fefe45bf9bd52993b483",
+    "PUBLIC-ABI.json": "49974da2e5afaaf75de5da71dd231c347516af24b0598c3fe23a7d44ea50b6a9"
+  },
+  "source_sha256": {
+    "tx_offline.c": "67e546755dd07d0994b5edfdb1345b9bb526a6a39db2a8147f1cacbf8eb41e64",
+    "ja_offline.c": "4f63980f17b8577df60ea4c201a7e42c8ad7c48a7dea3e0666fb4c50f5c2a56e",
+    "ja_control_offline.c": "edd519cf0b4d0b74e2c131fd8c4ef4e3a31bce1bcbdcc0e107ca69a047b4aa0c",
+    "ja_frame.h": "d71437fb4c727f01fb57d0545caa67f2421585d1f2f646ed856dedbb7621a9fa"
+  },
+  "original_dsp_sha256": "1f3e56d0dfae1a6aaf4eb6fcc4875a4524905e010d5758114cde288b3cf0b379",
+  "object_sha256": {
+    "modem_cmdline.o": "4b4ff21affdefdfa1b863a87cdda47b68aa408e3e54a529a0ca122274775c085",
+    "modem.o": "0a572e12621969b274c6be9aaa54de203d21dd9e7a8431bf9da35e4f4fe2cc0d",
+    "modem_datafile.o": "7af084fcda830982767a03ffaa494117746d2f95bf947687b70442cc3853c7c7",
+    "modem_at.o": "dab8ae7bc31a8eccab90d0d34dfb44f62243cfcc08e819178bc3b4d602a28761",
+    "modem_timer.o": "2ebe4661d191df34ac566879f049a96306934906123dcf48eebadee9a319ec46",
+    "modem_pack.o": "e9e69d0bc28891c252f12c8017ab27166adc4dc90761e0ca0a3a869474e2e0bb",
+    "modem_ec.o": "4df33a296da90e26ad1aee73a454d2ec9059e375a88c71a72d7c11700756ea5e",
+    "modem_comp.o": "dcc4579d68147363b5441a567e36b9ccda089a543f2cd3754b40cb6f2e240393",
+    "modem_param.o": "473fb2796c921ea995d98a4bd7f1b70e8efb69de4cf7e997f7eb6efc1e7fee9d",
+    "modem_debug.o": "87a68f04b76efc71f52579e41a9afda5186319abe567b91b358e1b965f65afcf",
+    "homolog_data.o": "f7629bb71c4948c81ba328edbb5d1fed5585faa1e7916ddefd354770df7c828d",
+    "dp_sinus.o": "eba91668622fb5183222fae8e3a81a6a7e9bff60c4a3094c33d153d2572bf3ac",
+    "dp_dummy.o": "fead89f7266b5ebcc194b1193854000b42f3d1aa06e8c613186a666ed4643af6",
+    "v90_gate.o": "12860b1d0acb37af63c01fb2d1ba96cd4a5132df2569d0c214f43d656659bb09",
+    "dsplibs.o": "2198fbf3da50f11509498c02eed667da1b1b3fab1d2ee816b8cf1b6545d77018",
+    "sysdep_common.o": "368f6436043b99dde5b1a639f28228a48b470398bb3e48f06067eb3cabfcd6ab"
+  },
+  "binary_sha256": {
+    "tx-offline": "00bd6bf005baef2b9226a1285c83fa40cbfafecf7ef4c997524fe24bc45063f0",
+    "ja-offline": "980d8c6b513a62da453b99f610bc0aa8efd85f761e0c0f71221aef8cdc73fb34",
+    "ja-control-offline": "1c824212391ff92499973920d4d50148e7680ba0db5932f940eef41c26cef4cf"
+  },
+  "compiler": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "linker": "GNU ld (GNU Binutils for Ubuntu) 2.42",
+  "architecture": "x86_64",
+  "flags": [
+    "-m32",
+    "-no-pie",
+    "-O2",
+    "-g",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-I<GATE>",
+    "-lm"
+  ],
+  "inputs_unchanged": true,
+  "private_objects_used": false,
+  "probes_executed": false,
+  "physical_calls": 0,
+  "scope": "Public-source offline probe link only; no modem run loop, device or peer."
+}

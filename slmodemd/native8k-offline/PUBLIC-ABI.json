@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "status": "Exact public source and ABI inventory. Execution evidence is recorded separately in validation.json.",
+  "public_repository": "https://github.com/szeremeta1/D-Modem",
+  "required_gate_branch": "codex/v90-digital-gates",
+  "reviewed_gate_commit": "4439727757a7d8be2a6176a7147fd14c5146cbcc",
+  "public_dsp_sha256": "1f3e56d0dfae1a6aaf4eb6fcc4875a4524905e010d5758114cde288b3cf0b379",
+  "public_source_sha256": {
+    "Makefile": "4d4325bf2efa1ed79826368a443625b3ebf1da334e28bde5c83a22417f07d273",
+    "dp_dummy.c": "9d5ab0641478f9523973c4fd4f605fcd7cd853137741ec192b27d7e9c007040b",
+    "dp_sinus.c": "8c09a3a72e33a94d59e2229899cc01a95e392cebcc985d9155ed7426ec387b6e",
+    "homolog_data.c": "bf1f7e457fa351becb9c81ce3da4a60678d775bea0f5781360b3460036353a8c",
+    "modem.c": "70e8f6877f3677bdc7f7fb0fb3b48a3daa37a62812b5f714f210320ea25616c3",
+    "modem.h": "559106b466134508bebd66de65f7960ba9a864569758ad8b9d69ac5b7620326a",
+    "modem_at.c": "0cc49d49177390a7e696433841ec06f15bc314e6c41f791d865a7a94bac06521",
+    "modem_cmdline.c": "7ccd87f04a4e620d96d1015ecdcb54019bd4697f2b0f263580380f4e6ccbeddb",
+    "modem_comp.c": "f2de6fa60c7bf9d31865f2a4a8a8a5b708201fe8768a6eed5d57e394f536210a",
+    "modem_datafile.c": "972f18c98c6dfacf968734ee74cbe262ad9af51af012a0e7029b1e2a9f88824a",
+    "modem_debug.c": "bcf029eecbca24f1a4bf404891c2cd1cce420fcc6e5d84314b31eeaa97b02210",
+    "modem_debug.h": "93c179f40389ee9aa7b00cdc71a57145acb40ee2e68c358b02ed32b358fcd83f",
+    "modem_defs.h": "dc7e0a41f1f7d49680b61092237012cbb9d961f21b513aa9d2781cf1dfed8fd5",
+    "modem_dp.h": "9789ef3480f4792db970139250802b839c1bdaa6e1177c81e701424f4c44711f",
+    "modem_ec.c": "6de585d4dc16f92f20a77cbafa25af3749a344789779ef2c18b4bcb1f8151039",
+    "modem_homolog.h": "140057f5f6647ca5fe0bee4505243039feadfb7d1eabb4de19e9cd0d6dea1415",
+    "modem_main.c": "8fe87bbaccdcc989e7eba4017015dac07420d478a569ec3bbc0e88c95ec2b688",
+    "modem_pack.c": "81dcd9642406ee5145c91b2e480ce9fae0d0b0f3873e07c31371fad2823f6352",
+    "modem_param.c": "262f78ad20c4e68a5dd9e585a52fa2746dddf63903a5376e40a417f8e63a6cd9",
+    "modem_param.h": "a03f456be0ba24cd471e8c787dde1581a16e25c01e83055782c555e61ff4565b",
+    "modem_test.c": "871cd63d64d7469154f4104b52c029662c74f945e031aeb5ff7b30ac8ff196fd",
+    "modem_timer.c": "a54fe0cb5e5893ea1b48d7daa5b25c3d0f9ef4a3dba92dc1efa3ded2ea992d6d",
+    "modem_timer.h": "dcc2c46f643743ea6d5f2afc5a283d077a00cb02fb8cadacc3b85afd06e2ae97",
+    "sysdep_common.c": "daff585208f3ff7ef56378e346d620fdacbf1bd47c161847c1f30474921f97c7"
+  },
+  "public_gate_source_sha256": {
+    "build.py": "1ffee501bd631a61591762aee281b79bcf664ca44fccf75b8857b14e551c216f",
+    "v90_gate.c": "3998733c86d1c16e122b32f6a4d0e823d9b98e3c8448e69430ecbfcccaf7cac8",
+    "v90_gate_abi.h": "a6d84e086db9d1316f816212e47f275d018d276bc139028afd64a73685f2c966",
+    "offline_check.c": "6ee72c08a23e217266ece2301e02343cf21d15fdb2289ea24545b0a368a2a699",
+    "test_build.py": "87b64cacde660231b444541266b67cb896e3a198c6c77a8782f0ae5fe50cc8d2"
+  },
+  "required_public_objects": [
+    "modem_cmdline",
+    "modem",
+    "modem_datafile",
+    "modem_at",
+    "modem_timer",
+    "modem_pack",
+    "modem_ec",
+    "modem_comp",
+    "modem_param",
+    "modem_debug",
+    "homolog_data",
+    "dp_sinus",
+    "dp_dummy",
+    "v90_gate",
+    "dsplibs",
+    "sysdep_common"
+  ],
+  "native_symbols": {
+    "DILdescriptorPacker": {
+      "address": 315904,
+      "size": 3278,
+      "elf_info": 18,
+      "unrelocated_function_bytes_sha256": "4108d39c51d517ce6f4c3414cf5912abda891c711bf18354e9b55e05e3857f8d"
+    },
+    "_ZN12V90Modulator8progressEPiRjPfj": {
+      "address": 108576,
+      "size": 780,
+      "elf_info": 18,
+      "unrelocated_function_bytes_sha256": "7cc6195e35ac254f506664a87a2d243bd671e81ad51187ab0cfad2e4d5bb117e"
+    },
+    "_ZN8V90Modem8progressEPiRjPfj": {
+      "address": 105168,
+      "size": 188,
+      "elf_info": 18,
+      "unrelocated_function_bytes_sha256": "4505a61d524809bade6bd8ddc41df857b9de7ca8b7cb1d9ea2e551dbe3bfaf25"
+    },
+    "_ZN12V90Modulator11enterPhase3Ev": {
+      "address": 105840,
+      "size": 130,
+      "elf_info": 18,
+      "unrelocated_function_bytes_sha256": "7d5bd206e29b349e0ee15f18703ede2dee42cc81340c8d3d9d7043e33af6140e"
+    },
+    "_ZN12V90Modulator5resetEv": {
+      "address": 107792,
+      "size": 78,
+      "elf_info": 18,
+      "unrelocated_function_bytes_sha256": "35077bbef8447f83a47470c3aa6672b2e8acaf8f734def1892b32a900ab5fa99"
+    }
+  },
+  "probe_source_sha256": {
+    "tx_offline.c": "67e546755dd07d0994b5edfdb1345b9bb526a6a39db2a8147f1cacbf8eb41e64",
+    "ja_offline.c": "4f63980f17b8577df60ea4c201a7e42c8ad7c48a7dea3e0666fb4c50f5c2a56e",
+    "ja_control_offline.c": "edd519cf0b4d0b74e2c131fd8c4ef4e3a31bce1bcbdcc0e107ca69a047b4aa0c",
+    "ja_frame.h": "d71437fb4c727f01fb57d0545caa67f2421585d1f2f646ed856dedbb7621a9fa"
+  },
+  "static_validation": "The public DSP has the five recorded symbol addresses/sizes and the gate ABI header. These checks do not replace execution or prove all field offsets or call behavior.",
+  "physical_calls": 0,
+  "licenses": "Existing D-Modem and slmodemd COPYING files remain authoritative; no vendor object or new license grant is included."
+}

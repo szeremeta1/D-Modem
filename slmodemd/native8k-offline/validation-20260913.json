@@ -1,0 +1,111 @@
+{
+  "schema": 1,
+  "validated_at_utc": "2026-09-13T07:36:20.430899+00:00",
+  "build_manifest_sha256": "ac49c5f185b393b20b1261dbfc404db1b73d936651c0ee9b8a76fe16913108a3",
+  "probes": {
+    "tx-offline": {
+      "binary_sha256": "00bd6bf005baef2b9226a1285c83fa40cbfafecf7ef4c997524fe24bc45063f0",
+      "exit_status": 0,
+      "result": {
+        "constructions": 3,
+        "native_samples_per_vector": 20000,
+        "nonzero_per_vector": 19856,
+        "g711_roundtrip_mismatches": 0,
+        "chunk_sizes": [
+          1,
+          40,
+          40
+        ],
+        "common_dispatch_checked": true,
+        "waiting_in_jd": true,
+        "received_waveform": false
+      },
+      "trace": {
+        "network_calls": 0,
+        "device_opens": 0,
+        "open_count": 2,
+        "parsed_records": 2,
+        "trace_filter": "network,open,openat,openat2,creat",
+        "opened_basenames": [
+          "ld.so.cache",
+          "libc.so.6"
+        ],
+        "scope": "Only selected network and pathname-opening syscalls observed; no claim about every possible device-access mechanism or path alias."
+      },
+      "stdout_sha256": "a2d9433ec73bfd8c73384169ddd21f49a846d6614fad1d11fe42cf188ca43b2b",
+      "stderr_sha256": "50982a09599c3173a1ece5e6625652a36398e9bb1019b22027d9cd8760a86a6a",
+      "trace_sha256": "edf493518912db1e09d0ced5348755189ce2c9c5691b8c41e527b524e59b9800"
+    },
+    "ja-offline": {
+      "binary_sha256": "980d8c6b513a62da453b99f610bc0aa8efd85f761e0c0f71221aef8cdc73fb34",
+      "exit_status": 0,
+      "result": {
+        "descriptor_combinations": 16384,
+        "exhaustive_representative_frames": 5,
+        "single_bit_changes_not_accepted": 5024,
+        "truncated_prefixes_not_accepted": 5024,
+        "already_descrambled_and_aligned": true,
+        "received_waveform": false
+      },
+      "trace": {
+        "network_calls": 0,
+        "device_opens": 0,
+        "open_count": 2,
+        "parsed_records": 2,
+        "trace_filter": "network,open,openat,openat2,creat",
+        "opened_basenames": [
+          "ld.so.cache",
+          "libc.so.6"
+        ],
+        "scope": "Only selected network and pathname-opening syscalls observed; no claim about every possible device-access mechanism or path alias."
+      },
+      "stdout_sha256": "994fcedcd31a9ae3ec93197b6573df02fd845e41f78275e9c2f9c7c30755b766",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "trace_sha256": "08b0bad8ac79e06eae440332beeb6fcbe1f1edc54639c2d08967575e27c61d8d"
+    },
+    "ja-control-offline": {
+      "binary_sha256": "1c824212391ff92499973920d4d50148e7680ba0db5932f940eef41c26cef4cf",
+      "exit_status": 0,
+      "result": {
+        "generated_ja_bits": 308,
+        "native_samples": 40,
+        "nonzero_samples": 27,
+        "constructor_pointers_preserved": true,
+        "invalid_input_does_not_commit": true,
+        "duplicate_after_phase3_rejected": true,
+        "received_waveform": false
+      },
+      "trace": {
+        "network_calls": 0,
+        "device_opens": 0,
+        "open_count": 2,
+        "parsed_records": 2,
+        "trace_filter": "network,open,openat,openat2,creat",
+        "opened_basenames": [
+          "ld.so.cache",
+          "libc.so.6"
+        ],
+        "scope": "Only selected network and pathname-opening syscalls observed; no claim about every possible device-access mechanism or path alias."
+      },
+      "stdout_sha256": "df6c91f08609707b6c888e885fe933655d11f2685f80c3322d9970898108ad5e",
+      "stderr_sha256": "e1f4e588a624956ce203e7efd555e24aee43250d6a8ab23b207237215a2b325d",
+      "trace_sha256": "dcc83d19fbcd48d27fbdea644bca47e6af60dcd3bef9d77559c6083742130be4"
+    }
+  },
+  "strace": "strace -- version 6.8",
+  "run_environment": {
+    "LC_ALL": "C",
+    "PATH": "system default; no inherited modem controls"
+  },
+  "timeout_seconds_per_probe": 15,
+  "core_dumps_disabled": true,
+  "stdin": "devnull",
+  "stdout_stderr": "private pipes",
+  "other_inherited_fds_closed": true,
+  "syscall_observation_scope": "network,open,openat,openat2,creat",
+  "syscall_filter_is_not_a_sandbox": true,
+  "physical_calls": 0,
+  "waveform_receiver_tested": false,
+  "transport_tested": false,
+  "scope": "Synthetic local constructors, packed/descrambled Ja bits and local native sample generation only; no peer negotiation or end-to-end rate/reliability claim."
+}
