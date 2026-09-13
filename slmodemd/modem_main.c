@@ -636,6 +636,10 @@ static int socket_start (struct modem *m)
 		snprintf(str,sizeof(str),"%d",sockets[0]);
 		close(sockets[1]);
 		execl(modem_exec,modem_exec,m->dial_string,str,NULL);
+		/* exec returns only on failure. Do not resume the modem event loop
+		 * in this forked child with inherited daemon descriptors/state. */
+		perror("slmodemd: exec helper");
+		_exit(127);
 	} else {
 		close(sockets[0]);
 		dev->fd = sockets[1];
