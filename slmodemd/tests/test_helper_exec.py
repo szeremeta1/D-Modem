@@ -43,7 +43,8 @@ int main(int argc, char **argv) {
         return 42;
     }
     if (argc != 3) return 73;
-    signal(SIGPIPE, SIG_IGN);
+    /* Keep the daemon's default SIGPIPE disposition: socket_start must
+     * not die when an exec-failed helper closes its end first. */
     pid_t owner = getpid();
     struct device_struct dev = { .fd = -1, .delay = 0 };
     struct modem modem = { .dev_data = &dev, .dial_string = "--helper" };

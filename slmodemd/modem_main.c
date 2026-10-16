@@ -646,7 +646,9 @@ static int socket_start (struct modem *m)
 		dev->delay = 0;
 		ret = 192*2;
 		memset(outbuf, 0 , ret);
-		ret = write(dev->fd, outbuf, ret);
+		/* The helper may already have exited (e.g. exec failure above);
+		 * report EPIPE instead of letting SIGPIPE kill the daemon. */
+		ret = send(dev->fd, outbuf, ret, MSG_NOSIGNAL);
 		DBG("done delay thing\n");
 		if (ret < 0) {
 			close(dev->fd);
