@@ -431,29 +431,26 @@ static void modem_hup(struct modem *m, unsigned local)
 		/* The call is ending while it is still handshaking: a datapump was
 		 * created and never reached data mode. Say so, unconditionally.
 		 *
-		 * This is the most common way this stack fails a caller and, until
-		 * this line, the only completely silent one. Without a -d flag the
-		 * answering side prints nothing at all for it -- no `change dp`, no
-		 * error, no reason -- so from outside it is indistinguishable from a
-		 * caller who hung up: ATA, a few seconds of relayed audio, and the
-		 * call is over. The line, the port and the process are all healthy.
+		 * Without a -d flag this case is otherwise silent: no `change dp`,
+		 * no error, no reason. It also fires when the peer or a local ATH
+		 * ends the call during training, so it records where the call
+		 * ended, not who ended it.
 		 *
-		 * It matters most on the answering side, because modem_answer()
-		 * discards the automode bit -- the hardcoded zero with the intended
-		 * value commented out beside it, further down this file -- so the
-		 * modem is locked to whatever AT+MS named and will not try another.
-		 * A caller whose modem cannot complete that one datapump fails this
-		 * way on EVERY attempt, for ever, and nothing anywhere says why. On
-		 * one production pool that cost a subscriber nine days of service.
+		 * Automode is not in effect in this build for either direction:
+		 * modem_param.c answers MDMPRM_AUTOMODE with a hard-wired 0, and
+		 * the automode_requested field cleared by modem_dial() and
+		 * modem_answer() is never read. The S-register value printed below
+		 * is what AT+MS asked for, not what the datapump used, so the
+		 * modem stays on the single modulation AT+MS named.
 		 *
 		 * dp id is the datapump that was actually running -- 8 is V.8, which
 		 * every fast modulation is routed through first -- so `offered 34,
 		 * running 8` is a V.8 negotiation that never handed off, and
 		 * `offered 132, running 132` is a V.32bis train that failed. */
-		MODEM_INFO("%s: no carrier: still handshaking after %ld samples "
-			   "(offered dp %d, automode %s, running dp %d)\n",
+		MODEM_INFO("%s: no carrier: still handshaking after %lu samples "
+			   "(offered dp %d, automode S%d=%d ignored, running dp %d)\n",
 			   m->name, m->count, MODEM_DP(m),
-			   MODEM_AUTOMODE(m) ? "requested" : "off",
+			   SREG_AUTOMODE, MODEM_AUTOMODE(m),
 			   m->dp ? m->dp->id : -1);
 		if(local && m->dp && m->dp->op->hangup )
 			m->dp->op->hangup(m->dp);
