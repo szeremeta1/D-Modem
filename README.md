@@ -106,9 +106,12 @@ To return to vendor behavior, unset these variables or use the original binary.
 
 Historical interleaved testing on one installation recorded 19/30 completed calls
 with the original criterion and 27/30 with it disabled (two-sided Fisher exact
-p = 0.030). Every completed call reported 33,600 bit/s **caller receive rate** in
-both arms. That measures fewer failed handshakes, not faster negotiation, both
-directional rates, a 100-call reliability result, or behavior on other hardware.
+p = 0.030). Connect rates did not differ significantly between arms: at the
+caller, armed calls connected at 33,600 on 17 and 21,600 on 2; disabled calls at
+33,600 on 21 and between 7,200 and 31,200 on 6 (corrected 2026-10-16; an earlier
+version of this paragraph said every completed call reported 33,600). That
+measures fewer failed handshakes, not faster negotiation, both directional
+rates, a 100-call reliability result, or behavior on other hardware.
 
 The historical A/B used additional host-side INFO0 recovery and buffering
 changes in both arms. The build above isolates this watchdog hook on the audited
